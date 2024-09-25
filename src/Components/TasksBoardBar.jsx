@@ -34,7 +34,7 @@ const TasksBoardBar = () => {
                 boards.map((b, i) => {
                     console.log(b, 'b')
                     return (
-                        <TasksBoard name={b.toString()} key={i++}/>
+                        <TasksBoard name={b} key={i++}/>
                     )
                 })
             }

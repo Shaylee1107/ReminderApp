@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const NewBoardForm = ({ addNewBoard }) => {
+const NewListForm = ({ addNewList }) => {
     const INITIAL_STATE = {
         name: '',
     };
@@ -17,7 +17,7 @@ const NewBoardForm = ({ addNewBoard }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(formData.name !== ''){
-        addNewBoard(formData.name);
+        addNewList(formData.name);
         setFormData(INITIAL_STATE);
     } else {
         alert("cannot be empty");
@@ -39,5 +39,5 @@ const NewBoardForm = ({ addNewBoard }) => {
   );
 }
 
-export default NewBoardForm;
+export default NewListForm;
 
