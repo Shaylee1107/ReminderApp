@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NewBoardForm from './NewBoardForm';
+import TasksBoard from './TasksBoard';
 
 const TasksBoardBar = () => {
-    const [boards, setBoards] = useState();
+    const [boards, setBoards] = useState([]);
     const [toggleForm, setToggleForm] = useState(false);
 
+    const addNewBoard = (newBoardName) => {
+        if(newBoardName!== undefined){
+            setBoards([...boards, newBoardName]);
+        }
+    }
+
+    useEffect(() => {
+        console.log(boards, 'boards')
+    }, [addNewBoard])
+
     const showBoardForm = () => {
-        if(toggleForm === true){
+        if(toggleForm){
             return (
                 <>
-                    <NewBoardForm />
+                    <NewBoardForm addNewBoard={addNewBoard}/>
                 </>
             )
         }
@@ -17,8 +28,16 @@ const TasksBoardBar = () => {
 
     return (
         <div>
-            <button onClick={() => setToggleForm(value => !value)}>+ Add Board</button>
+            <div onClick={() => setToggleForm(value => !value)}>+ Add Board</div>
             {showBoardForm()}
+            {
+                boards.map((b, i) => {
+                    console.log(b, 'b')
+                    return (
+                        <TasksBoard name={b.toString()} key={i++}/>
+                    )
+                })
+            }
         </div>
     )
 }

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
-const NewBoardForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-  });
+const NewBoardForm = ({ addNewBoard }) => {
+    const INITIAL_STATE = {
+        name: '',
+    };
+  const [formData, setFormData] = useState(INITIAL_STATE);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,13 +16,13 @@ const NewBoardForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+    addNewBoard(formData.name);
+    setFormData(INITIAL_STATE);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Name:</label>
         <input
           type="text"
           name="name"
