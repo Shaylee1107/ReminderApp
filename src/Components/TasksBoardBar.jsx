@@ -31,10 +31,9 @@ const TasksBoardBar = () => {
             <div onClick={() => setToggleForm(value => !value)}>+ Add Board</div>
             {showBoardForm()}
             {
-                boards.map((b, i) => {
-                    console.log(b, 'b')
+                boards.map((boardName, i) => {
                     return (
-                        <TasksBoard name={b} key={i++}/>
+                        <TasksBoard boardName={boardName} key={i++}/>
                     )
                 })
             }

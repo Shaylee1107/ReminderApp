@@ -2,35 +2,43 @@ import React, { useState } from 'react';
 import TaskList from './TaskList';
 import NewListForm from './NewListForm';
 
-const TasksBoard = ({ name }) => {
-    const [showTasks, setShowTasks] = useState(false);
+const TasksBoard = ({ boardName }) => {
+    const [showLists, setShowLists] = useState(false);
     const [showListForm, setShowListForm] = useState(false);
     const [taskLists, setTaskLists] = useState([]);
 
-    // const popUpTasks = () => {
-    //  if(showTasks){
-    //     taskLists.map((list) => {
-    //         return (
-    //             <TaskList list={list}/>
-    //         )
-    //     })
-    //  }
-    // }
+    const popUpTaskLists = () => {
+        console.log(showLists, 'showLists')
+     if(showLists){
+        taskLists.map((listName) => {
+            return (
+                <TaskList listName={listName}/>
+            )
+        })
+     }
+    }
+
+    const addNewList = (listName) => {
+        if(taskLists !== undefined){
+            setTaskLists([...taskLists, listName]);
+        }
+        console.log(taskLists, 'taskLists')
+    }
 
     const popUpListForm = () => {
         if(showListForm){
             return (
-                <NewListForm />
+                <NewListForm addNewList={addNewList}/>
             )
         }
     }
 
     return (
         <>
-          <div onClick={() => setShowTasks(value => !value)}>{`${name}`}</div>
-          <button>+ Add List</button>
+          <div onClick={() => setShowLists(value => !value)}>{`${boardName}`}</div>
+          <button onClick={() => setShowListForm(value => !value)}>+ Add List</button>
           {popUpListForm()}
-          {/* {popUpTasks()} */}
+          {popUpTaskLists()}
         </>
     )
 }
