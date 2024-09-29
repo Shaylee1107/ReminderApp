@@ -8,13 +8,14 @@ const TasksBoard = ({ boardName }) => {
     const [taskLists, setTaskLists] = useState([]);
 
     const popUpTaskLists = () => {
-        console.log(showLists, 'showLists')
      if(showLists){
-        taskLists.map((listName) => {
-            return (
-                <TaskList listName={listName}/>
-            )
-        })
+        return (
+            taskLists.map((listName, i) => {
+                return (
+                    <TaskList listName={listName} key={`${i++}`}/>
+                )
+            })
+        )
      }
     }
 

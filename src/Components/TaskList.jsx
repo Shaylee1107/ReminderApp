@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const TaskList = ({ listName }) => {
+    const [tasks, setTasks] = useState([]);
+
+    // const showTasks = () => {
+
+    // }
+
     return (
         <div>
             <h1>{`${listName}`}</h1>
