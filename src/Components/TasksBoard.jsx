@@ -6,13 +6,20 @@ const TasksBoard = ({ boardName }) => {
     const [showLists, setShowLists] = useState(false);
     const [showListForm, setShowListForm] = useState(false);
     const [taskLists, setTaskLists] = useState([]);
+    const [tasks, setTasks] = useState([]);
 
     const popUpTaskLists = () => {
      if(showLists){
         return (
             taskLists.map((listName, i) => {
                 return (
-                    <TaskList listName={listName} key={`${i++}`}/>
+                    <TaskList 
+                      listName={listName} 
+                      key={`${i}`} 
+                      showLists={showLists} 
+                      tasks={tasks} 
+                      setTasks={setTasks}
+                    />
                 )
             })
         )
@@ -23,7 +30,6 @@ const TasksBoard = ({ boardName }) => {
         if(taskLists !== undefined){
             setTaskLists([...taskLists, listName]);
         }
-        console.log(taskLists, 'taskLists')
     }
 
     const popUpListForm = () => {
