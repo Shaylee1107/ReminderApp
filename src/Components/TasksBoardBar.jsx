@@ -12,10 +12,6 @@ const TasksBoardBar = () => {
         }
     }
 
-    useEffect(() => {
-        console.log(boards, 'boards')
-    }, [addNewBoard])
-
     const showBoardForm = () => {
         if(toggleForm){
             return (

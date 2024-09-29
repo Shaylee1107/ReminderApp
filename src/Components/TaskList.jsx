@@ -6,8 +6,6 @@ const TaskList = ({ listName, showLists, tasks, setTasks }) => {
     const [showTaskForm, setShowTaskForm] = useState(false);
 
     const showTasks = () => {
-        console.log(showLists, 'showLists')
-        console.log(tasks, 'tasks')
         if(showLists){
             return (
                 tasks.map((task, i) => {
