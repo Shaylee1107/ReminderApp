@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import NewTaskForm from './NewTaskForm';
-import Task from './Task';
+import NewTaskForm from '../NewTaskForm';
+import Task from '../Task';
 
-const TaskList = ({ listName, showLists, tasks, setTasks }) => {
+const TaskList = ({ listName, showLists }) => {
     const [showTaskForm, setShowTaskForm] = useState(false);
+    const [tasks, setTasks] = useState([]);
 
     const showTasks = () => {
         if(showLists){

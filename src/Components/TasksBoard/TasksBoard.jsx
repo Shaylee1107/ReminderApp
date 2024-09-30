@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import TaskList from './TaskList';
-import NewListForm from './NewListForm';
+import TaskList from '../TaskList/TaskList';
+import NewListForm from '../NewListForm';
+import styles from './TasksBoard.module.css';
+import ListContainer from '../ListContainer/ListContainer';
 
 const TasksBoard = ({ boardName }) => {
     const [showLists, setShowLists] = useState(false);
     const [showListForm, setShowListForm] = useState(false);
     const [taskLists, setTaskLists] = useState([]);
-    const [tasks, setTasks] = useState([]);
+
+    let showing = showLists ? 'flex' : 'none';
 
     const popUpTaskLists = () => {
-     if(showLists){
         return (
-            taskLists.map((listName, i) => {
-                return (
-                    <TaskList 
-                      listName={listName} 
-                      key={`${i}`} 
-                      showLists={showLists} 
-                      tasks={tasks} 
-                      setTasks={setTasks}
-                    />
-                )
-            })
+            <div style={{display: `${showing}`}}>
+              {
+                  taskLists.map((listName, i) => {
+                      return (
+                          <TaskList 
+                            listName={listName} 
+                            key={`${i}`} 
+                            showLists={showLists} 
+                          />
+                      )
+                  })
+              }   
+           </div>
         )
-     }
     }
 
     const addNewList = (listName) => {
@@ -45,7 +48,12 @@ const TasksBoard = ({ boardName }) => {
           <div onClick={() => setShowLists(value => !value)}>{`${boardName}`}</div>
           <button onClick={() => setShowListForm(value => !value)}>+ Add List</button>
           {popUpListForm()}
-          {popUpTaskLists()}
+          {/* <div className={styles.listContainer}>
+            {popUpTaskLists()}
+          </div> */}
+          <div>
+            <ListContainer popUpTaskLists={popUpTaskLists}/>
+          </div>
         </>
     )
 }

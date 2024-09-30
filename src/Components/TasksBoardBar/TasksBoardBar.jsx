@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import NewBoardForm from './NewBoardForm';
-import TasksBoard from './TasksBoard';
+import React, { useState } from 'react';
+import NewBoardForm from '../NewBoardForm';
+import TasksBoard from '../TasksBoard/TasksBoard';
+import styles from './TasksBoardBar.module.css';
 
 const TasksBoardBar = () => {
     const [boards, setBoards] = useState([]);
@@ -23,7 +24,7 @@ const TasksBoardBar = () => {
     }
 
     return (
-        <div>
+        <div className={styles.tasksboardbar}>
             <div onClick={() => setToggleForm(value => !value)}>+ Add Board</div>
             {showBoardForm()}
             {
