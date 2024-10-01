@@ -32,6 +32,7 @@ const NewTaskForm = ({ addNewTask }) => {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          autoFocus
         />
       </div>
       <button type="submit">Submit</button>

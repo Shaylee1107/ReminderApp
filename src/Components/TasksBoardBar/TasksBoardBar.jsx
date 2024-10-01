@@ -5,16 +5,19 @@ import styles from './TasksBoardBar.module.css';
 
 const TasksBoardBar = () => {
     const [boards, setBoards] = useState([]);
-    const [toggleForm, setToggleForm] = useState(false);
+    const [showBoardForm, setShowBoardForm] = useState(false);
+
+    let addBoardDisplay = showBoardForm ? 'none' : 'block';
 
     const addNewBoard = (newBoardName) => {
         if(newBoardName!== undefined){
             setBoards([...boards, newBoardName]);
+            setShowBoardForm(false);
         }
     }
 
-    const showBoardForm = () => {
-        if(toggleForm){
+    const popUpBoardForm = () => {
+        if(showBoardForm){
             return (
                 <>
                     <NewBoardForm addNewBoard={addNewBoard}/>
@@ -25,8 +28,8 @@ const TasksBoardBar = () => {
 
     return (
         <div className={styles.tasksboardbar}>
-            <div onClick={() => setToggleForm(value => !value)}>+ Add Board</div>
-            {showBoardForm()}
+            <div style={{display: addBoardDisplay}} onClick={() => setShowBoardForm(true)}>+ Add Board</div>
+            {popUpBoardForm()}
             {
                 boards.map((boardName, i) => {
                     return (

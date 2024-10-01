@@ -9,11 +9,11 @@ const TasksBoard = ({ boardName }) => {
     const [showListForm, setShowListForm] = useState(false);
     const [taskLists, setTaskLists] = useState([]);
 
-    let showing = showLists ? 'flex' : 'none';
+    let listDisplay = showLists ? 'flex' : 'none';
 
     const popUpTaskLists = () => {
         return (
-            <div style={{display: `${showing}`}}>
+            <div style={{display: `${listDisplay}`}}>
               {
                   taskLists.map((listName, i) => {
                       return (
@@ -46,14 +46,14 @@ const TasksBoard = ({ boardName }) => {
     return (
         <>
           <div onClick={() => setShowLists(value => !value)}>{`${boardName}`}</div>
-          <button onClick={() => setShowListForm(value => !value)}>+ Add List</button>
-          {popUpListForm()}
-          {/* <div className={styles.listContainer}>
+          <div className={styles.listContainer}>
             {popUpTaskLists()}
-          </div> */}
-          <div>
-            <ListContainer popUpTaskLists={popUpTaskLists}/>
+            <button onClick={() => setShowListForm(value => !value)}>+ Add List</button>
+            {popUpListForm()}
           </div>
+          {/* <div>
+            <ListContainer popUpTaskLists={popUpTaskLists}/>
+          </div> */}
         </>
     )
 }
