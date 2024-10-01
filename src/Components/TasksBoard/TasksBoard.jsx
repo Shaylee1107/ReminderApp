@@ -2,31 +2,30 @@ import React, { useState } from 'react';
 import TaskList from '../TaskList/TaskList';
 import NewListForm from '../NewListForm';
 import styles from './TasksBoard.module.css';
-import ListContainer from '../ListContainer/ListContainer';
 
-const TasksBoard = ({ boardName }) => {
-    const [showLists, setShowLists] = useState(false);
+const TasksBoard = ({ boardName, activeBoard, showActiveBoard }) => {
     const [showListForm, setShowListForm] = useState(false);
     const [taskLists, setTaskLists] = useState([]);
 
-    let listDisplay = showLists ? 'flex' : 'none';
-
     const popUpTaskLists = () => {
-        return (
-            <div style={{display: `${listDisplay}`}}>
-              {
-                  taskLists.map((listName, i) => {
-                      return (
-                          <TaskList 
-                            listName={listName} 
-                            key={`${i}`} 
-                            showLists={showLists} 
-                          />
-                      )
-                  })
-              }   
-           </div>
-        )
+        if(activeBoard){
+            return (
+                <div style={{display: 'flex'}}>
+                  {
+                      taskLists.map((listName, i) => {
+                          return (
+                              <TaskList 
+                                listName={listName} 
+                                key={`${i}`} 
+                              />
+                          )
+                      })
+                  }   
+                    <button onClick={() => setShowListForm(value => !value)}>+ Add List</button>
+                    {popUpListForm()}
+               </div>
+            )
+        }
     }
 
     const addNewList = (listName) => {
@@ -45,15 +44,10 @@ const TasksBoard = ({ boardName }) => {
 
     return (
         <>
-          <div onClick={() => setShowLists(value => !value)}>{`${boardName}`}</div>
+          <div onClick={() => showActiveBoard(boardName)}>{`${boardName}`}</div>
           <div className={styles.listContainer}>
             {popUpTaskLists()}
-            <button onClick={() => setShowListForm(value => !value)}>+ Add List</button>
-            {popUpListForm()}
           </div>
-          {/* <div>
-            <ListContainer popUpTaskLists={popUpTaskLists}/>
-          </div> */}
         </>
     )
 }
