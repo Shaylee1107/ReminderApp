@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import NewTaskForm from '../NewTaskForm';
 import Task from '../Task';
 
-const TaskList = ({ listName, showLists }) => {
+const TaskList = ({ listName }) => {
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [tasks, setTasks] = useState([]);
 
     const showTasks = () => {
-        if(showLists){
             return (
                 tasks.map((task, i) => {
                     return (
@@ -15,13 +14,10 @@ const TaskList = ({ listName, showLists }) => {
                     )
                 })
             )
-        }
     }
 
     const addNewTask = (newTask) => {
-        if(tasks !== undefined){
-            setTasks([...tasks, newTask]);
-        }
+        setTasks([...tasks, newTask]);
     }
 
     const popUpTaskForm = () => {

@@ -31,6 +31,7 @@ const TasksBoard = ({ boardName, activeBoard, showActiveBoard }) => {
     const addNewList = (listName) => {
         if(taskLists !== undefined){
             setTaskLists([...taskLists, listName]);
+            setShowListForm(false);
         }
     }
 
