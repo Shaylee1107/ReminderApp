@@ -15,7 +15,7 @@ const TasksBoardBar = () => {
     }
 
     const addNewBoard = (newBoardName) => {
-        if(newBoardName!== undefined){
+        if(newBoardName !== undefined){
             setBoards([...boards, newBoardName]);
             setShowBoardForm(false);
             setActiveBoard(newBoardName);
